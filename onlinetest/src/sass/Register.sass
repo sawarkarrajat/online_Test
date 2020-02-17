@@ -1,0 +1,89 @@
+@import base.sass
+@import url('https://fonts.googleapis.com/css?family=Lemonada&display=swap')
+
+.sbody
+  @extend %d-flex-r
+  width: 100%
+  position: relative
+
+  #regForm::before
+    content: ''
+    top: 5vh
+    left: 10vh
+    position: absolute
+    z-index: 0
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%)
+    background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%)
+    opacity: 0.5
+    display: block
+    width: 30%
+    height: 30%
+    transform: rotate(20deg)
+
+  #regForm::after
+    content: ''
+    bottom: 10vh
+    right: 30vh
+    position: absolute
+    z-index: 0
+    clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%)
+    background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%)
+    opacity: 0.5
+    display: block
+    width: 30%
+    height: 40%
+    transform: rotate(-20deg)
+
+  #regForm
+    @extend %d-flex-c
+    width: 80%
+    height: 80vh
+    background: white
+    border-top-right-radius: 50px
+    box-shadow: -5px -4px 8px 0 rgba(255, 255, 255, 0.2), 5px 4px 20px 0 rgba(255, 255, 255, 0.19)
+
+    form
+      @extend %d-flex-c
+      width: 85%
+      height: 100%
+      flex-flow: column wrap
+      div
+        margin: 2% 0
+
+  #sideText
+    @extend %d-flex-c
+    width: 20%
+    height: 80vh
+
+    span
+      color: white
+      font-size: 2rem
+      line-height: 1.5
+      font-family: $font-cursive
+      text-shadow: 11px 7px 16px #000000
+
+@media only screen and ( max-width: 740px )
+  .sbody     
+      #regForm
+        width: 90%
+        height: calc(100% + 10px)
+        form
+          div
+            margin: 5% 0
+
+
+@media only screen and ( max-width: 590px )
+  .sbody 
+    #sideText 
+      width: 10%
+      span
+        font-size: 1rem
+    
+    #regForm
+      width: 90%
+      height: calc(100% + 10px)
+
+
+      form
+        div
+          margin: 6% 0
