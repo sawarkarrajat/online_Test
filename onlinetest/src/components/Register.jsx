@@ -2,6 +2,9 @@ import React from "react";
 import "../sass/Register.sass";
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import * as data from "../data/..";
+const fs = require('fs');
+
 
 class Register extends React.Component {
   constructor(props) {
@@ -24,6 +27,13 @@ class Register extends React.Component {
         }
         return true;
     });
+  //   fs.readFileSync(data,(err, jsonString) => {
+  //     if (err) {
+  //         console.log("File read failed:", err)
+  //         return
+  //     }
+  //     console.log('File data:', jsonString) 
+  // })
 }
 
 componentWillUnmount() {

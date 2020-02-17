@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <div className="Parent">
         <div className="header">
-          <Icon fontSize="50px">
+          <Icon>
             <ChromeReaderModeOutlinedIcon/>
           </Icon>
           <h1>Online Test Application</h1>
