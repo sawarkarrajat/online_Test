@@ -6,23 +6,23 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const useStyles = makeStyles({
   root: {
-    '& label.Mui-focused': {
-      color: 'black',
+    "& label.Mui-focused": {
+      color: "black"
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'black',
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "black"
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'red',
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "red"
       },
-      '&:hover fieldset': {
-        borderColor: 'violet',
+      "&:hover fieldset": {
+        borderColor: "violet"
       },
-      '&.Mui-focused fieldset': {
-        borderColor: 'red',
-      },
-    },
+      "&.Mui-focused fieldset": {
+        borderColor: "red"
+      }
+    }
   }
 });
 
@@ -39,7 +39,7 @@ const RegistrationForm = props => {
         {props.fields.map((data, index) => (
           <TextValidator
             classes={{
-              root: classes.root, // class name, e.g. `classes-nesting-root-x`
+              root: classes.root // class name, e.g. `classes-nesting-root-x`
             }}
             variant="outlined"
             key={index + 121}
@@ -77,11 +77,16 @@ class SignUp extends Component {
 
   componentDidMount() {
     // custom rule will have name 'isPasswordMatch'
+    console.log(this.state.user.password.length);
+
+    ValidatorForm.addValidationRule("isPasswordLength", value => {
+      if (this.state.user.password.length < 6) {
+        return false;
+      }
+      return true;
+    });
     ValidatorForm.addValidationRule("isPasswordMatch", value => {
-      if (
-        value !== this.state.user.password &&
-        this.state.user.password.length < 6
-      ) {
+      if (value !== this.state.user.password) {
         return false;
       }
       return true;
@@ -119,7 +124,7 @@ class SignUp extends Component {
         value: user.name,
         type: "text",
         validators: ["required"],
-        em: ["this field is required"],
+        em: ["*this field is required"],
         helperText: "Enter first name and last name with a space"
       },
       {
@@ -128,7 +133,7 @@ class SignUp extends Component {
         value: user.email,
         type: "email",
         validators: ["required", "isEmail"],
-        em: ["this field is required", "email is not valid"],
+        em: ["*this field is required", "*email is not valid"],
         helperText: ""
       },
       {
@@ -137,7 +142,7 @@ class SignUp extends Component {
         value: user.password,
         type: "password",
         validators: ["required"],
-        em: ["this field is required"],
+        em: ["*this field is required"],
         helperText: ""
       },
       {
@@ -146,7 +151,7 @@ class SignUp extends Component {
         value: user.repeatPassword,
         type: "password",
         validators: ["isPasswordMatch", "required"],
-        em: ["password mismatch", "this field is required"],
+        em: ["*password mismatch", "*this field is required"],
         helperText: ""
       }
     ];
