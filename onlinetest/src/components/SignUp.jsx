@@ -1,23 +1,35 @@
-import React from "react";
-import "../sass/Register.sass";
+import React, { Component } from "react";
+import "../sass/SignUp.sass";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-// import questions from "../data/questions.json";
-const txt = ["R", "E", "G", "I", "S", "T", "E", "R"];
 
-const SideText = () => {
-  return (
-    <div id="sideText">
-      {txt.map((alpha, index) => (
-        <span key={index}>{alpha}</span>
-      ))}
-    </div>
-  );
-};
+const useStyles = makeStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'black',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'black',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'red',
+      },
+      '&:hover fieldset': {
+        borderColor: 'violet',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'red',
+      },
+    },
+  }
+});
 
 const RegistrationForm = props => {
+  const classes = useStyles();
   return (
-    <div id="regForm">
+    <div className="formContainer">
       <ValidatorForm
         // ref="form"
         onSubmit={props.handleSubmit}
@@ -25,6 +37,10 @@ const RegistrationForm = props => {
       >
         {props.fields.map((data, index) => (
           <TextValidator
+            classes={{
+              root: classes.root, // class name, e.g. `classes-nesting-root-x`
+            }}
+            variant="outlined"
             key={index + 121}
             label={data.label}
             onChange={props.handleChange}
@@ -45,8 +61,7 @@ const RegistrationForm = props => {
     </div>
   );
 };
-
-class Register extends React.Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +77,10 @@ class Register extends React.Component {
   componentDidMount() {
     // custom rule will have name 'isPasswordMatch'
     ValidatorForm.addValidationRule("isPasswordMatch", value => {
-      if (value !== this.state.user.password && this.state.user.password.length<6) {
+      if (
+        value !== this.state.user.password &&
+        this.state.user.password.length < 6
+      ) {
         return false;
       }
       return true;
@@ -91,7 +109,6 @@ class Register extends React.Component {
     await window.localStorage.setItem("userData", JSON.stringify(this.state));
     this.props.history.push("/disclamer");
   };
-
   render() {
     const { user } = this.state;
     const fields = [
@@ -133,16 +150,15 @@ class Register extends React.Component {
       }
     ];
     return (
-      <div className="sbody ">
+      <div className="regForm">
         <RegistrationForm
           fields={fields}
-          handleSubmit={(event) => this.handleSubmit(event)}
-          handleChange={(event) => this.handleChange(event)}
+          handleSubmit={event => this.handleSubmit(event)}
+          handleChange={event => this.handleChange(event)}
         />
-        <SideText />
       </div>
     );
   }
 }
 
-export default Register;
+export default SignUp;
