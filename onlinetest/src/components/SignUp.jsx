@@ -35,6 +35,7 @@ const RegistrationForm = props => {
         onSubmit={props.handleSubmit}
         onError={errors => console.log(errors)}
       >
+        <h3 id="reg">Register</h3>
         {props.fields.map((data, index) => (
           <TextValidator
             classes={{

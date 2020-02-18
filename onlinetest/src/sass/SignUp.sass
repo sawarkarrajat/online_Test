@@ -5,10 +5,15 @@
   align-self: center
   border-radius: 12px
   width: 550px
+  max-width: 1000px
+  min-width: 318px
+  min-height: 500px
+  max-height: 1000px
   background: rgb(255, 255, 255)
   box-shadow: 0px 0px 20px #80808075
   height: 80vh
   position: relative
+  
 
   &:hover
     box-shadow: 0px 0px 20px #5fa9b0
@@ -39,8 +44,8 @@
     clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%)
     width: 20%
     height: 20%
-    -webkit-animation: breathing 5s ease-out infinite normal
-    animation: breathing 5s ease-out infinite normal
+    -webkit-animation: breathing 3s ease-out infinite normal
+    animation: breathing 3s ease-out infinite normal
 
   
   .formContainer
@@ -53,6 +58,14 @@
       justify-content: space-evenly
       width: 100%
       height: 100%
+      overflow-y: auto
+
+      #reg
+        align-self: flex-start
+        font-family: $font-thick
+        color: #ff6162
+        letter-spacing: 3px
+        font-weight: 100
 
       #submit
         background: linear-gradient(to right, rgb(255, 153, 102), rgb(255, 94, 98))
@@ -62,25 +75,33 @@
 @-webkit-keyframes breathing
   0%
     -webkit-transform: scale(0.9)
-    transform: scale(0.9)
+    transform: scale(0.9) 
+    background: rgba(255, 255, 255, 0.25)
+    transform: skew(10deg, 10deg) scale(0.9)
 
   25%
     -webkit-transform: scale(1)
     transform: scale(1)
+    background: rgba(255, 255, 255, 0.5)
+    transform: skew(10deg, 10deg) scale(1)
 
   60%
     -webkit-transform: scale(0.9)
     transform: scale(0.9)
+    background: rgba(255, 255, 255, 1)
+    transform: skew(10deg, 10deg) scale(0.9)
 
   100%
     -webkit-transform: scale(0.9)
     transform: scale(0.9)
+    background: rgba(255, 255, 255, 0.75)
+    transform: skew(10deg, 10deg) scale(0.9)
 
 @keyframes breathing
   0%
     -webkit-transform: scale(0.9)
     -ms-transform: scale(0.9)
-    background: rgba(255, 255, 255, 0.25)
+    // background: rgba(255, 255, 255, 1)
     transform: skew(10deg, 10deg) scale(0.9)
     
 
@@ -88,22 +109,37 @@
     -webkit-transform: scale(1)
     -ms-transform: scale(1)
     transform: scale(1)
-    background: rgba(255, 255, 255, 0.5)
+    // background: rgba(255, 255, 255, 0.75)
     transform: skew(10deg, 10deg) scale(1)
 
   60%
     -webkit-transform: scale(0.9)
     -ms-transform: scale(0.9)
     transform: scale(0.9)
-    background: rgba(255, 255, 255, 1)
+    // background: rgba(255, 255, 255, 0.5)
     transform: skew(10deg, 10deg) scale(0.9)
 
   100%
     -webkit-transform: scale(0.9)
     -ms-transform: scale(0.9)
     transform: scale(0.9)
-    background: rgba(255, 255, 255, 0.75)
+    background: rgba(255, 255, 255, 0.9)
     transform: skew(10deg, 10deg) scale(0.9)
 
+
+@media screen and ( max-width: 769px )
+  .formContainer::before, .formContainer::after
+    display: none
+
+@media screen and ( max-width: 676px )
+  .regForm
+    width: 90%
+
+@media screen and ( max-width: 550px )
+  .regForm
+    width: 100%
+
+  
+  
 
       
