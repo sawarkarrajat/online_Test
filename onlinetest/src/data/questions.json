@@ -1,0 +1,32 @@
+[
+  {
+    "sno": 1,
+    "question": "what is 1+2",
+    "answerChoices": [3, 4, 2, 5],
+    "correctAnswerIndex": 0
+  },
+  {
+    "sno": 2,
+    "question": "what is 2*3",
+    "answerChoices": [2, 4, 6, 8],
+    "correctAnswerIndex": 2
+  },
+  {
+    "sno": 3,
+    "question": "what is 10/2",
+    "answerChoices": [3, 2, 5, 4],
+    "correctAnswerIndex": 2
+  },
+  {
+    "sno": 4,
+    "question": "what is (3+2)*2",
+    "answerChoices": [10, 7, 8, 5],
+    "correctAnswerIndex": 0
+  },
+  {
+    "sno": 5,
+    "question": "what is 121/11",
+    "answerChoices": [10, 12, 20, 11],
+    "correctAnswerIndex": 3
+  }
+]
