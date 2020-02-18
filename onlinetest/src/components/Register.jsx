@@ -44,16 +44,19 @@ class Register extends React.Component {
     });
   };
 
-  handleSubmit = () => {
-    // your submit logic
+  handleSubmit = (event) => {
+   event.preventDefault();
+   console.log(JSON.stringify(this.state));
+   window.localStorage.setItem('userData',JSON.stringify(this.state));
   };
   render() {
-    // const { user } = this.state;
+    const { user } = this.state;
     const fields = [
       {
         label: "Name",
         name: "name",
-        value: this.state.user.name,
+        value: user.name,
+        type:"text",
         validators: ["required"],
         em: ["this field is required"],
         helperText: "Enter first name and last name with a space"
@@ -61,7 +64,8 @@ class Register extends React.Component {
       {
         label: "Email",
         name: "email",
-        value: this.state.user.email,
+        value: user.email,
+        type:"email",
         validators: ["required", "isEmail"],
         em: ["this field is required", "email is not valid"],
         helperText: ""
@@ -69,7 +73,8 @@ class Register extends React.Component {
       {
         label: "Password",
         name: "password",
-        value: this.state.user.password,
+        value: user.password,
+        type:"password",
         validators: ["required"],
         em: ["this field is required"],
         helperText: ""
@@ -77,7 +82,8 @@ class Register extends React.Component {
       {
         label: "Repeat password",
         name: "repeatPassword",
-        value: this.state.user.repeatPassword,
+        value: user.repeatPassword,
+        type:"password",
         validators: ["isPasswordMatch", "required"],
         em: ["password mismatch", "this field is required"],
         helperText: ""
@@ -99,6 +105,7 @@ class Register extends React.Component {
                 fullWidth
                 name={data.name}
                 value={data.value}
+                type={data.type}
                 validators={data.validators}
                 errorMessages={data.em}
                 helperText={data.helperText}
