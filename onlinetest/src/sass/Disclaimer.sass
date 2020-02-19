@@ -2,23 +2,39 @@
 
 .disclamer
   @extend %d-flex-c
-  justify-content: flex-start
-  width: 90%
+  justify-content: center
+  align-self: center
+  width: calc(100% - 100px)
+  max-width: 1000px
   height: fit-content
   margin-bottom: 10vh
-  background: #d1d1d16e
+  background: rgba(209, 209, 209, 0.5)
   border-radius: 25px
   padding: 50px
 
   h4
-    color: white
-    text-shadow: 3px 1px 6px #000000
-
+    color: #ff5f62
+    font-weight: 600
 
   .lorem
     margin: 20px 0
-    body
-      color: white
-      text-shadow: 11px 7px 16px #000000
+    p
+      color: rgb(248, 248, 255)
       text-align: justify
+
+  .level
+    @extend %d-flex-c
+    justify-content: flex-start
+    align-self: flex-start
+
+  .next
+    @extend %d-flex-r
+    width: 100%
+    justify-content: flex-end
+
+    .MuiButton-contained
+      color: red
+      background-color: #ffffff75
+
+
     

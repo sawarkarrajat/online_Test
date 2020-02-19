@@ -25,9 +25,9 @@
   // height: 100vh
   justify-content: flex-start
   align-items: flex-start
-  overflow-y: scroll
+  overflow-y: auto
   padding: 0 50px
-  animation: fadeInAnimation ease 3s 
+  animation: fadeInAnimation ease 2s 
   animation-iteration-count: 1 
   animation-fill-mode: forwards
 
@@ -41,6 +41,7 @@
   .header
     @extend %d-flex-r
     width: 100%
+    min-height: 100px
     height: 15vh
     justify-content: flex-start
     // background: white

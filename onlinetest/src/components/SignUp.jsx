@@ -17,7 +17,7 @@ const useStyles = makeStyles({
         borderColor: "red"
       },
       "&:hover fieldset": {
-        borderColor: "violet"
+        borderColor: "orangered"
       },
       "&.Mui-focused fieldset": {
         borderColor: "red"
@@ -77,14 +77,6 @@ class SignUp extends Component {
 
   componentDidMount() {
     // custom rule will have name 'isPasswordMatch'
-    console.log(this.state.user.password.length);
-
-    ValidatorForm.addValidationRule("isPasswordLength", value => {
-      if (this.state.user.password.length < 6) {
-        return false;
-      }
-      return true;
-    });
     ValidatorForm.addValidationRule("isPasswordMatch", value => {
       if (value !== this.state.user.password) {
         return false;
@@ -141,8 +133,8 @@ class SignUp extends Component {
         name: "password",
         value: user.password,
         type: "password",
-        validators: ["required"],
-        em: ["*this field is required"],
+        validators: ["required",'matchRegexp:^(?=.{6,})'],
+        em: ["*this field is required","*password too short minimum 6 characters"],
         helperText: ""
       },
       {

@@ -16,7 +16,7 @@
   
 
   &:hover
-    box-shadow: 0px 0px 20px #5fa9b0
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.75)
 
   .formContainer::before
     position: absolute
@@ -30,8 +30,9 @@
     clip-path: polygon(0% 0%, 0% 100%, 25% 100%, 25% 25%, 75% 25%, 75% 75%, 25% 75%, 25% 100%, 100% 100%, 100% 0%)
     width: 10%
     height: 10%
-    -webkit-animation: breathing 5s ease-out infinite normal
-    animation: breathing 5s ease-out infinite normal
+    -webkit-animation: breathing 3s ease-out infinite normal
+    animation: breathing 3s ease-out infinite normal
+
   .formContainer::after
     position: absolute
     top: 400px
@@ -47,7 +48,6 @@
     -webkit-animation: breathing 3s ease-out infinite normal
     animation: breathing 3s ease-out infinite normal
 
-  
   .formContainer
     @extend %d-flex-c
     height: 100%
@@ -66,6 +66,8 @@
         color: #ff6162
         letter-spacing: 3px
         font-weight: 100
+        font-size: 25px
+        margin: 0
 
       #submit
         background: linear-gradient(to right, rgb(255, 153, 102), rgb(255, 94, 98))
