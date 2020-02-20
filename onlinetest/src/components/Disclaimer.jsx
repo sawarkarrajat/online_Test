@@ -48,21 +48,21 @@ const RadioButtonsGroup = () => {
           <FormControlLabel
             className={classes.legend}
             value="L1"
-            control={<Radio />}
+            control={<Radio color="primary" />}
             label="L1"
           />
           <FormHelperText>Easy questions</FormHelperText>
           <FormControlLabel
             className={classes.legend}
             value="L2"
-            control={<Radio />}
+            control={<Radio color="primary"/>}
             label="L2"
           />
           <FormHelperText>Medium Difficulty questions</FormHelperText>
           <FormControlLabel
             className={classes.legend}
             value="L3"
-            control={<Radio />}
+            control={<Radio color="primary"/>}
             label="L3"
           />
           <FormHelperText>Hard questions</FormHelperText>

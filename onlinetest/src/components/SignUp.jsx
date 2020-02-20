@@ -14,13 +14,13 @@ const useStyles = makeStyles({
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: "red"
+        borderColor: "rgb(108, 241, 207)"
       },
       "&:hover fieldset": {
-        borderColor: "orangered"
+        borderColor: "black"
       },
       "&.Mui-focused fieldset": {
-        borderColor: "red"
+        borderColor: "rgb(108, 241, 209)"
       }
     }
   }
