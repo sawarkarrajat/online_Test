@@ -2,29 +2,28 @@
 
 .testContainer
   @extend %d-flex-r
-  justify-content: center
+  justify-content: space-between
   width: 100%
+  min-height: 600px
   height: 98%
   margin-bottom: 2%
-  // background: white
 
   .navques
     @extend %d-flex-c
-    margin: 0 25px
+    // margin: 0 25px
     justify-content: flex-start
     box-sizing: border-box
     padding: 25px
     border-radius: 20px
-    width: 300px
+    width: 340px
     height: 100%
-    // background: rgba(0, 0, 0, 0.25)
     background: #000000  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #434343, #000000)  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(67, 67, 67, 0.2)) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   .areaques
     @extend %d-flex-c
-    margin: 0 25px
+    min-height: 600px
     width: calc(100% - 350px)
     max-width: 1200px
     height: 100%
@@ -43,6 +42,8 @@
       border-radius: 20px
 
     .submit
+      padding: 0
+      width: calc(100% - 25px)
       justify-content: flex-end
       margin-right: 25px
       height: 80px
@@ -60,6 +61,29 @@
       background: #007991  
       background: -webkit-linear-gradient(to right, rgba(120, 255, 215, 0.5), rgba(0, 121, 145, 0.5))  
       background: linear-gradient(to right, rgba(120, 255, 215, 0.5), rgba(0, 121, 145, 0.5))
+      @extend %d-flex-c
+      box-sizing: border-box
+      justify-content: space-between
+
+      .qtext
+        @extend %d-flex-r
+        padding-bottom: 20px
+        justify-content: flex-start
+        align-items: flex-start
+        width: 100%
+        max-height: 50%
+        
+      .qtext > p
+        margin: 0
+        font-size: 30px
+        color: white
+        font-family: $font-thick !important
+
+      .options
+        @extend %d-flex-r
+        width: 100%
+        min-height: 206px
+        height: 50%
  
 
     .actions

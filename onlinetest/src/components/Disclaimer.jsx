@@ -30,7 +30,7 @@ const RadioButtonsGroup = () => {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel
           component="legend"
@@ -68,7 +68,7 @@ const RadioButtonsGroup = () => {
           <FormHelperText>Hard questions</FormHelperText>
         </RadioGroup>
       </FormControl>
-    </div>
+    </React.Fragment>
   );
 };
 
