@@ -5,12 +5,15 @@ import { makeStyles } from "@material-ui/core/styles";
 // import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { Button } from "@material-ui/core";
+import { Button, Step } from "@material-ui/core";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import data from "../data/questions.json";
+import uniqid from "uniqid";
+var index = 0;
 
 const useStyles = makeStyles({
   root: {
@@ -36,17 +39,19 @@ const useStyles = makeStyles({
   legend: {
     color: "white !important",
     fontFamily: "'Fredoka One', cursive !important"
+  },
+  checked: {
+    color: "rgb(1, 122, 145) !important"
   }
 });
 
-const RadioButtonsGroup = () => {
+const RadioButtonsGroup = props => {
   const classes = useStyles();
-  const [value, setValue] = React.useState("0");
+  const [value, setValue] = React.useState("x");
 
   const handleChange = event => {
     console.log(event.target.value);
-    setValue(event.target.value);
-    // localStorage.setItem("level",event.target.value);
+    setValue(Number(event.target.value));
   };
 
   return (
@@ -65,41 +70,27 @@ const RadioButtonsGroup = () => {
             root: classes.group
           }}
           name="options"
-          value={value}
+          value={Number(value)}
           onChange={handleChange}
         >
-          <FormControlLabel
-            classes={{
-              label: classes.legend
-            }}
-            value="0"
-            control={<Radio color="primary" />}
-            label="option 1"
-          />
-          <FormControlLabel
-            classes={{
-              label: classes.legend
-            }}
-            value="1"
-            control={<Radio color="primary" />}
-            label="option 2"
-          />
-          <FormControlLabel
-            classes={{
-              label: classes.legend
-            }}
-            value="2"
-            control={<Radio color="primary" />}
-            label="option 3"
-          />
-          <FormControlLabel
-            classes={{
-              label: classes.legend
-            }}
-            value="3"
-            control={<Radio color="primary" />}
-            label="option 4"
-          />
+          {props.options.map(choice => (
+            <FormControlLabel
+              key={uniqid()}
+              classes={{
+                label: classes.legend
+              }}
+              value={choice}
+              control={
+                <Radio
+                  classes={{
+                    checked: classes.checked
+                  }}
+                  color="primary"
+                />
+              }
+              label={choice}
+            />
+          ))}
         </RadioGroup>
       </FormControl>
     </React.Fragment>
@@ -121,13 +112,56 @@ const Timer = () => {
 class ConductTest extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      ...data[index]
+    };
   }
+
+  componentDidMount() {
+    if (!localStorage.getItem("level")) {
+      this.props.history.push("/logout");
+    }
+  }
+
+  handlePrevNext = (event, step) => {
+    event.preventDefault();
+    console.log(step);
+    if (step === "prev" && index === 0) {
+      return;
+    } else if (step === "next" && index === data.length) {
+      return;
+    } else if (step === "prev") {
+      index--;
+      this.setState({ ...data[index] });
+    } else if (step === "next") {
+      index++;
+      this.setState({ ...data[index] });
+    }
+  };
+
   render() {
+    console.log(this.state);
+    const {
+      question,
+      sno,
+      answerChoices,
+      correctAnswerIndex,
+      isAnswered,
+      isVisited
+    } = this.state;
     return (
       <div className="testContainer">
         <div className="navques">
           <Timer />
+          <div className="navigator">
+            {data.map(info => (
+              <div key={uniqid()} className="naviC">
+                <div className="navi">
+                  {info.sno}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="areaques">
           <div className="submit">
@@ -138,20 +172,33 @@ class ConductTest extends Component {
           <div className="ques">
             <div className="qtext">
               <p>
-                Qno.&nbsp;{"["}1{"]"}&nbsp;&nbsp;
+                Qno.&nbsp;{"["}
+                {sno}
+                {"]"}&nbsp;&nbsp;
               </p>
               &nbsp;
-              <p>what is 1+2</p>
+              <p>{question}</p>
             </div>
             <div className="options">
-              <RadioButtonsGroup />
+              <RadioButtonsGroup
+                options={answerChoices}
+                correctAns={correctAnswerIndex}
+              />
             </div>
           </div>
           <div className="actions">
-            <Button id="prevnext" size="small">
+            <Button
+              id="prevnext"
+              size="small"
+              onClick={event => this.handlePrevNext(event, "prev")}
+            >
               previous
             </Button>
-            <Button id="prevnext" size="small">
+            <Button
+              id="prevnext"
+              size="small"
+              onClick={event => this.handlePrevNext(event, "next")}
+            >
               next
             </Button>
           </div>

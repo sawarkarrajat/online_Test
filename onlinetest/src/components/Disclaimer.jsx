@@ -23,10 +23,10 @@ const RadioButtonsGroup = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState("L1");
 
-  const handleChange = event => {
+  const handleChange = async event => {
     console.log(event.target.value);
     setValue(event.target.value);
-    localStorage.setItem("level", event.target.value);
+    await localStorage.setItem("level", event.target.value);
   };
 
   return (
@@ -90,12 +90,19 @@ const Lorem = () => {
 
 class Disclamer extends Component {
   componentDidMount() {
+    if (!localStorage.getItem('userData')) {
+      this.props.history.push('/');
+    }
     window.onpopstate = e => {
       this.props.history.push("/logout");
     };
+    localStorage.setItem('level', "L1");
   }
   handleStart = event => {
     event.preventDefault();
+    if (!localStorage.getItem('level')) {
+      return;
+    }
     this.props.history.push("/test");
   };
   render() {
