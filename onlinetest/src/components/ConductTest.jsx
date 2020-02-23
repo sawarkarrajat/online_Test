@@ -108,7 +108,22 @@ const Timer = () => {
     </Card>
   );
 };
-
+const Navigator = props => {
+  return (
+    <div className="navigator">
+      {data.map(info => (
+        <div key={uniqid()} className="naviC">
+          <div
+            className="navi"
+            onClick={event => props.handleNavigation(event, info.sno)}
+          >
+            {info.sno}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 class ConductTest extends Component {
   constructor(props) {
     super(props);
@@ -139,6 +154,13 @@ class ConductTest extends Component {
     }
   };
 
+  handleNavigation = (event, sno) => {
+    event.preventDefault();
+    this.setState({
+      ...data[sno - 1]
+    });
+  };
+
   render() {
     console.log(this.state);
     const {
@@ -153,15 +175,7 @@ class ConductTest extends Component {
       <div className="testContainer">
         <div className="navques">
           <Timer />
-          <div className="navigator">
-            {data.map(info => (
-              <div key={uniqid()} className="naviC">
-                <div className="navi">
-                  {info.sno}
-                </div>
-              </div>
-            ))}
-          </div>
+          <Navigator handleNavigation={this.handleNavigation} />
         </div>
         <div className="areaques">
           <div className="submit">
