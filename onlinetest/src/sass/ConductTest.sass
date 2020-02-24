@@ -1,5 +1,21 @@
 @import base.sass
 
+#sbtn
+  color: white
+  border: 2px solid white
+  border-radius: 25px
+  background: #007991  
+  background: -webkit-linear-gradient(to right, #78ff7f, #009149)  
+  background: linear-gradient(to right, #78ff7f, #009149)   
+
+#btn
+  color: white
+  border: 2px solid white
+  border-radius: 25px
+  background: #007991  
+  background: -webkit-linear-gradient(to right, #78ffd6, #007991)  
+  background: linear-gradient(to right, #78ffd6, #007991)   
+
 .testContainer
   @extend %d-flex-r
   justify-content: space-between
@@ -41,7 +57,7 @@
         justify-content: center
         width: 62px
         margin-bottom: 10px
-        .navi
+        .navi,.naviAV,.naviV
           font-family: $font-thick
           display: block
           width: 40px
@@ -49,12 +65,19 @@
           line-height: 40px
           text-align: center
           vertical-align: middle
-          border: 2px solid white
           border-radius: 50%
-          color: white
           background: #007991  
           background: -webkit-linear-gradient(to right, rgba(120, 255, 215, 0.5), rgba(0, 121, 145, 0.5))  
           background: linear-gradient(to right, rgba(120, 255, 215, 0.5), rgba(0, 121, 145, 0.5))
+        .navi
+          color: white
+          border: 2px solid white
+        .naviAV
+          color: purple
+          border: 2px solid purple
+        .naviV
+          color: yellow
+          border: 2px solid yellow
 
   .areaques
     @extend %d-flex-c
@@ -119,7 +142,10 @@
         width: 100%
         min-height: 206px
         height: 50%
- 
+        justify-content: space-evenly
+
+        #txt
+          color: white 
 
     .actions
       height: 80px

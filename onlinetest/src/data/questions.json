@@ -5,6 +5,7 @@
     "answerChoices": [3, 4, 2, 5],
     "correctAnswerIndex": 0,
     "isAnswered": false,
+    "selectedOption": "x",
     "isVisited": false
   },
   {
@@ -13,6 +14,7 @@
     "answerChoices": [2, 4, 6, 8],
     "correctAnswerIndex": 2,
     "isAnswered": false,
+    "selectedOption": "x",
     "isVisited": false
   },
   {
@@ -21,6 +23,7 @@
     "answerChoices": [3, 2, 5, 4],
     "correctAnswerIndex": 2,
     "isAnswered": false,
+    "selectedOption": "x",
     "isVisited": false
   },
   {
@@ -29,6 +32,7 @@
     "answerChoices": [10, 7, 8, 5],
     "correctAnswerIndex": 0,
     "isAnswered": false,
+    "selectedOption": "x",
     "isVisited": false
   },
   {
@@ -37,6 +41,7 @@
     "answerChoices": [10, 12, 20, 11],
     "correctAnswerIndex": 3,
     "isAnswered": false,
+    "selectedOption": "x",
     "isVisited": false
   },
   {
@@ -45,6 +50,7 @@
     "answerChoices": [10, 12, 20, 11],
     "correctAnswerIndex": 0,
     "isAnswered": false,
+    "selectedOption": "x",
     "isVisited": false
   }
 ]

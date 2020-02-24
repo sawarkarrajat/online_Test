@@ -1,129 +1,25 @@
 import React, { Component } from "react";
 import "../sass/ConductTest.sass";
-import { makeStyles} from "@material-ui/core/styles";
-// import Card from "@material-ui/core/Card";
-// import CardActions from "@material-ui/core/CardActions";
-// import CardContent from "@material-ui/core/CardContent";
-// import Typography from "@material-ui/core/Typography";
-import { Button, Step } from "@material-ui/core";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+// import { makeStyles} from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 import jdata from "../data/questions.json";
 import uniqid from "uniqid";
 import Timer from "./Timer";
 const data = jdata;
 var index = 0;
+// const element = [];
+// for (let i = 0; i < data.length; i++) {
+//   element.push(data[i].sno)
+// }
 
-
-const useStyles = makeStyles({
-  root: {
-    width: "100%",
-    borderRadius: "20px"
-  },
-  title: {
-    color: "rgba(1, 122, 146, 0.75)",
-    fontSize: 30,
-    fontWeight: "600",
-    textAlign: "center"
-  },
-  group: {
-    justifyContent: "space-between"
-  },
-  content: {
-    padding: "5px !important"
-  },
-  formControl: {
-    width: "100%",
-    margin: "24px"
-  },
-  legend: {
-    color: "white !important",
-    fontFamily: "'Fredoka One', cursive !important"
-  },
-  checked: {
-    color: "rgb(1, 122, 145) !important"
-  }
-});
-
-const RadioButtonsGroup = props => {
-  const classes = useStyles();
-  const [value, setValue] = React.useState("x");
-
-  const handleChange = event => {
-    console.log(event.target.value);
-    setValue(Number(event.target.value));
-  };
-
-  return (
-    <React.Fragment>
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel
-          component="legend"
-          className={classes.legend}
-          style={{ fontStyle: "italic", fontSize: "12px" }}
-        >
-          options:
-        </FormLabel>
-        <RadioGroup
-          aria-label="options"
-          classes={{
-            root: classes.group
-          }}
-          name="options"
-          value={Number(value)}
-          onChange={handleChange}
-        >
-          {props.options.map((choice, index) => (
-            <FormControlLabel
-              key={uniqid()}
-              classes={{
-                label: classes.legend
-              }}
-              value={index}
-              control={
-                <Radio
-                  classes={{
-                    checked: classes.checked
-                  }}
-                  color="primary"
-                />
-              }
-              label={choice}
-            />
-          ))}
-        </RadioGroup>
-      </FormControl>
-    </React.Fragment>
-  );
-};
-
-// const Timer = () => {
-//   const classes = useStyles();
-
-//   return (
-// <Card className={classes.root}>
-//   <CardContent className={classes.content}>
-//     <Typography className={classes.title}>59:00</Typography>
-//   </CardContent>
-// </Card>
-//   );
-// };
 const Navigator = props => {
   return (
     <div className="navigator">
-      {data.map(info => (
-        <div key={uniqid()} className="naviC">
-          <div
-            className="navi"
-            onClick={event => props.handleNavigation(event, info.sno)}
-          >
-            {info.sno}
-          </div>
+      {/* {props.jsonData.map(d => (
+        <div className="naviC">
+          <div className={}>{d.sno}</div>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };
@@ -132,7 +28,8 @@ class ConductTest extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...data[index]
+      ...data[index],
+      jsonData: data
     };
   }
 
@@ -165,13 +62,37 @@ class ConductTest extends Component {
     });
   };
 
+  handleOptionSelect = (event, option) => {
+    event.preventDefault();
+    console.log(option);
+    this.setState(
+      {
+        selectedOption: option,
+        isAnswered: true,
+        isVisited: true
+      },
+      () => {
+        let stateData = this.state;
+        data[index] = {
+          ...data[index],
+          stateData
+        };
+        
+        console.log(this.state);
+        console.log(data);
+      }
+    );
+  };
+
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const {
+      jsonData,
       question,
       sno,
       answerChoices,
-      correctAnswerIndex,
+      // correctAnswerIndex,
+      selectedOption,
       isAnswered,
       isVisited
     } = this.state;
@@ -179,7 +100,12 @@ class ConductTest extends Component {
       <div className="testContainer">
         <div className="navques">
           <Timer />
-          <Navigator handleNavigation={this.handleNavigation} />
+          <Navigator
+            jsonData={jsonData}
+            isAnswered={isAnswered}
+            isVisited={isVisited}
+            handleNavigation={this.handleNavigation}
+          />
         </div>
         <div className="areaques">
           <div className="submit">
@@ -198,10 +124,17 @@ class ConductTest extends Component {
               <p>{question}</p>
             </div>
             <div className="options">
-              <RadioButtonsGroup
-                options={answerChoices}
-                correctAns={correctAnswerIndex}
-              />
+              <h3 id="txt">options:-</h3>
+              {answerChoices.map((choices, posindex) => (
+                <Button
+                  key={uniqid()}
+                  id={selectedOption === posindex ? "sbtn" : "btn"}
+                  varient="contained"
+                  onClick={e => this.handleOptionSelect(e, posindex)}
+                >
+                  {choices}
+                </Button>
+              ))}
             </div>
           </div>
           <div className="actions">
