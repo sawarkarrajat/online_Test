@@ -1,19 +1,22 @@
 import React, { Component } from "react";
 import "../sass/ConductTest.sass";
-import Card from "@material-ui/core/Card";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
+// import Card from "@material-ui/core/Card";
 // import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+// import CardContent from "@material-ui/core/CardContent";
+// import Typography from "@material-ui/core/Typography";
 import { Button, Step } from "@material-ui/core";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import data from "../data/questions.json";
+import jdata from "../data/questions.json";
 import uniqid from "uniqid";
+import Timer from "./Timer";
+const data = jdata;
 var index = 0;
+
 
 const useStyles = makeStyles({
   root: {
@@ -73,13 +76,13 @@ const RadioButtonsGroup = props => {
           value={Number(value)}
           onChange={handleChange}
         >
-          {props.options.map(choice => (
+          {props.options.map((choice, index) => (
             <FormControlLabel
               key={uniqid()}
               classes={{
                 label: classes.legend
               }}
-              value={choice}
+              value={index}
               control={
                 <Radio
                   classes={{
@@ -97,17 +100,17 @@ const RadioButtonsGroup = props => {
   );
 };
 
-const Timer = () => {
-  const classes = useStyles();
+// const Timer = () => {
+//   const classes = useStyles();
 
-  return (
-    <Card className={classes.root}>
-      <CardContent className={classes.content}>
-        <Typography className={classes.title}>59:00</Typography>
-      </CardContent>
-    </Card>
-  );
-};
+//   return (
+// <Card className={classes.root}>
+//   <CardContent className={classes.content}>
+//     <Typography className={classes.title}>59:00</Typography>
+//   </CardContent>
+// </Card>
+//   );
+// };
 const Navigator = props => {
   return (
     <div className="navigator">
@@ -124,6 +127,7 @@ const Navigator = props => {
     </div>
   );
 };
+
 class ConductTest extends Component {
   constructor(props) {
     super(props);

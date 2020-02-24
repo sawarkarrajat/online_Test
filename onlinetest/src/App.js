@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Disclaimer from "./components/Disclaimer";
 import ConductTest from './components/ConductTest';
@@ -13,7 +13,7 @@ function App() {
         <div className="header">
           <h1>Test Application</h1>
         </div>
-        <BrowserRouter>
+        <Router>
           <Switch>
             <Route path="/" exact component={SignUp}></Route>
             {/* <Route path="/" exact component={Register}></Route> */}
@@ -21,7 +21,7 @@ function App() {
             <Route path="/test" component={ConductTest}></Route>
             {/* <Route path="/dashboard/" component={}></Route> */}
           </Switch>
-        </BrowserRouter>
+        </Router>
       </div>
     </div>
   );
