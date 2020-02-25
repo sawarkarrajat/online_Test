@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Disclaimer from "./components/Disclaimer";
 import ConductTest from './components/ConductTest';
+import Result from "./components/Result";
+import Logout from "./components/Logout";
 import "./App.sass";
 
 function App() {
@@ -16,9 +18,10 @@ function App() {
         <Router>
           <Switch>
             <Route path="/" exact component={SignUp}></Route>
-            {/* <Route path="/" exact component={Register}></Route> */}
             <Route path="/disclamer" component={Disclaimer}></Route>
             <Route path="/test" component={ConductTest}></Route>
+            <Route path="/result" component={Result}></Route>
+            <Route path="/logout" component={Logout}></Route>
             {/* <Route path="/dashboard/" component={}></Route> */}
           </Switch>
         </Router>

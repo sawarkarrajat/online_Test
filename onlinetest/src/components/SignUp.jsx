@@ -75,6 +75,10 @@ class SignUp extends Component {
     };
   }
 
+  UNSAFE_componentWillMount() {
+    localStorage.clear();
+  }
+
   componentDidMount() {
     // custom rule will have name 'isPasswordMatch'
     ValidatorForm.addValidationRule("isPasswordMatch", value => {

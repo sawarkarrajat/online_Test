@@ -2,24 +2,28 @@ import React, { Component } from "react";
 import "../sass/ConductTest.sass";
 // import { makeStyles} from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import jdata from "../data/questions.json";
+import data from "../data/questions.json";
 import uniqid from "uniqid";
 import Timer from "./Timer";
-const data = jdata;
+import ADialog from "./ADialog";
+// const data = jdata;
 var index = 0;
-// const element = [];
-// for (let i = 0; i < data.length; i++) {
-//   element.push(data[i].sno)
-// }
 
 const Navigator = props => {
   return (
     <div className="navigator">
-      {/* {props.jsonData.map(d => (
-        <div className="naviC">
-          <div className={}>{d.sno}</div>
+      {props.jsonData.map((d, pos) => (
+        <div key={uniqid()} className="naviC">
+          <div
+            className={d.isAnswered ? "naviA" : "navi"}
+            onClick={e => {
+              props.handleNavigation(e, d.sno, pos);
+            }}
+          >
+            {d.sno}
+          </div>
         </div>
-      ))} */}
+      ))}
     </div>
   );
 };
@@ -29,7 +33,8 @@ class ConductTest extends Component {
     super(props);
     this.state = {
       ...data[index],
-      jsonData: data
+      jsonData: data,
+      dialog: false
     };
   }
 
@@ -37,6 +42,9 @@ class ConductTest extends Component {
     if (!localStorage.getItem("level")) {
       this.props.history.push("/logout");
     }
+    window.onpopstate = e => {
+      this.props.history.push("/logout");
+    };
   }
 
   handlePrevNext = (event, step) => {
@@ -55,8 +63,9 @@ class ConductTest extends Component {
     }
   };
 
-  handleNavigation = (event, sno) => {
+  handleNavigation = (event, sno, pos) => {
     event.preventDefault();
+    index = pos;
     this.setState({
       ...data[sno - 1]
     });
@@ -68,22 +77,52 @@ class ConductTest extends Component {
     this.setState(
       {
         selectedOption: option,
-        isAnswered: true,
-        isVisited: true
+        isAnswered: true
       },
       () => {
         let stateData = this.state;
-        data[index] = {
-          ...data[index],
-          stateData
-        };
-        
-        console.log(this.state);
-        console.log(data);
+        console.log("value in stateDAta", stateData);
+        data[index] = stateData;
+        this.setState({
+          jsonData: data
+        });
+        console.log(this.state.jsonData);
+        console.log(data.length);
       }
     );
   };
 
+  handleAgree = () => {
+    this.setState({ dialog: false });
+    let marks = 0;
+    for (let i = 0; i < data.length; i++) {
+      // console.log(data[i].isAnswered && data[i].correctAnswerIndex === data[i].selectedOption)
+      if (
+        data[i].isAnswered &&
+        data[i].correctAnswerIndex === data[i].selectedOption
+      ) {
+        marks += 1;
+      }
+    }
+    // console.log("marks got", marks)
+    let per = (marks / data.length) * 100;
+    per = per.toString(); //If it's not already a String
+    per = per.slice(0, per.indexOf(".") + 3); //With 3 exposing the hundredths place
+    per = Number(per);
+    // console.log("percentage got",per);
+    localStorage.setItem("marks", marks);
+    localStorage.setItem("percentage", per);
+    this.props.history.push("/result");
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    // jdata = data;
+    console.log("value in jdata", data);
+    this.setState({
+      dialog: true
+    });
+  };
   render() {
     // console.log(this.state);
     const {
@@ -91,10 +130,8 @@ class ConductTest extends Component {
       question,
       sno,
       answerChoices,
-      // correctAnswerIndex,
       selectedOption,
-      isAnswered,
-      isVisited
+      isAnswered
     } = this.state;
     return (
       <div className="testContainer">
@@ -103,13 +140,23 @@ class ConductTest extends Component {
           <Navigator
             jsonData={jsonData}
             isAnswered={isAnswered}
-            isVisited={isVisited}
             handleNavigation={this.handleNavigation}
           />
         </div>
         <div className="areaques">
           <div className="submit">
-            <Button id="stest" variant="contained" size="large">
+            <div className="legend">
+              <div className="navi">A</div>
+              "Unattempted"
+              <div className="naviA">A</div>
+              "Attempted"
+            </div>
+            <Button
+              id="stest"
+              variant="contained"
+              size="large"
+              onClick={e => this.handleSubmit(e)}
+            >
               Submit Test
             </Button>
           </div>
@@ -127,6 +174,7 @@ class ConductTest extends Component {
               <h3 id="txt">options:-</h3>
               {answerChoices.map((choices, posindex) => (
                 <Button
+                  size="large"
                   key={uniqid()}
                   id={selectedOption === posindex ? "sbtn" : "btn"}
                   varient="contained"
@@ -154,6 +202,13 @@ class ConductTest extends Component {
             </Button>
           </div>
         </div>
+        <ADialog
+          status={this.state.dialog}
+          handleClose={() => {
+            this.setState({ dialog: false });
+          }}
+          handleAgree={this.handleAgree}
+        />
       </div>
     );
   }
