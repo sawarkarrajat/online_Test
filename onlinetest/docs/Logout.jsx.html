@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: Logout.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,44 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: Logout.jsx</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import "../sass/Result.sass";
+import { Button } from '@material-ui/core';
+/**
+ * 
+ * @param {Object} props 
+ */
+function Logout(props) {
+  localStorage.clear();
+  /**
+   * 
+   * @param {Object} event - contains event fired on button click 
+   */
+  const handleRegister = (event) => {
+    event.preventDefault();
+    props.history.push("/");
+  }
+  
+  return (
+    &lt;div className="result">
+      &lt;h1>you cannot go back to test please register again&lt;/h1>
+      &lt;Button varient="contained" size="medium" id="btn" onClick={handleRegister}>Register&lt;/Button>
+    &lt;/div>
+  );
+}
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default Logout;</code></pre>
+        </article>
+    </section>
 
 
 

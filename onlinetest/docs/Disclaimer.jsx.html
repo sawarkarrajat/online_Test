@@ -1,4 +1,32 @@
-import React, { Component } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Disclaimer.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Disclaimer.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from "react";
 import "../sass/Disclaimer.sass";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -44,52 +72,52 @@ const RadioButtonsGroup = () => {
   };
 
   return (
-    <React.Fragment>
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel
+    &lt;React.Fragment>
+      &lt;FormControl component="fieldset" className={classes.formControl}>
+        &lt;FormLabel
           component="legend"
           className={classes.legend}
           style={{ fontStyle: "italic" }}
         >
           Levels
-        </FormLabel>
-        <RadioGroup
+        &lt;/FormLabel>
+        &lt;RadioGroup
           aria-label="levels"
           name="levels"
           value={value}
           onChange={handleChange}
         >
-          <FormControlLabel
+          &lt;FormControlLabel
             className={classes.legend}
             value="L1"
-            control={<Radio color="primary" />}
+            control={&lt;Radio color="primary" />}
             label="L1"
           />
-          <FormHelperText>Easy questions</FormHelperText>
-          <FormControlLabel
+          &lt;FormHelperText>Easy questions&lt;/FormHelperText>
+          &lt;FormControlLabel
             className={classes.legend}
             value="L2"
-            control={<Radio color="primary"/>}
+            control={&lt;Radio color="primary"/>}
             label="L2"
           />
-          <FormHelperText>Medium Difficulty questions</FormHelperText>
-          <FormControlLabel
+          &lt;FormHelperText>Medium Difficulty questions&lt;/FormHelperText>
+          &lt;FormControlLabel
             className={classes.legend}
             value="L3"
-            control={<Radio color="primary"/>}
+            control={&lt;Radio color="primary"/>}
             label="L3"
           />
-          <FormHelperText>Hard questions</FormHelperText>
-        </RadioGroup>
-      </FormControl>
-    </React.Fragment>
+          &lt;FormHelperText>Hard questions&lt;/FormHelperText>
+        &lt;/RadioGroup>
+      &lt;/FormControl>
+    &lt;/React.Fragment>
   );
 };
 
 const Lorem = () => {
   return (
-    <div className="lorem">
-      <Typography component="p">
+    &lt;div className="lorem">
+      &lt;Typography component="p">
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem
         accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
         illo inventore veritatis et quasi architecto beatae vitae dicta sunt
@@ -97,8 +125,8 @@ const Lorem = () => {
         odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
         voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum
         quia dolor sit amet, consectetur.
-      </Typography>
-    </div>
+      &lt;/Typography>
+    &lt;/div>
   );
 };
 
@@ -121,28 +149,51 @@ class Disclamer extends Component {
   };
   render() {
     return (
-      <div className="disclamer">
-        <Typography component="h4" variant="h4">
+      &lt;div className="disclamer">
+        &lt;Typography component="h4" variant="h4">
           Disclaimer
-        </Typography>
-        <Lorem />
-        <div className="level">
-          <h4>Please select the level of test.</h4>
-          <RadioButtonsGroup />
-        </div>
-        <div className="next">
-          <Button
+        &lt;/Typography>
+        &lt;Lorem />
+        &lt;div className="level">
+          &lt;h4>Please select the level of test.&lt;/h4>
+          &lt;RadioButtonsGroup />
+        &lt;/div>
+        &lt;div className="next">
+          &lt;Button
             variant="contained"
             size="small"
             id="next"
             onClick={this.handleStart}
           >
             Start Test
-          </Button>
-        </div>
-      </div>
+          &lt;/Button>
+        &lt;/div>
+      &lt;/div>
     );
   }
 }
 
 export default Disclamer;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="SignUp.html">SignUp</a></li><li><a href="Timer.html">Timer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#DisplayTimer">DisplayTimer</a></li><li><a href="global.html#Logout">Logout</a></li><li><a href="global.html#RadioButtonsGroup">RadioButtonsGroup</a></li><li><a href="global.html#RegistrationForm">RegistrationForm</a></li><li><a href="global.html#Result">Result</a></li><li><a href="global.html#useStyles">useStyles</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Tue Apr 28 2020 00:14:31 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

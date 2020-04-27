@@ -11,7 +11,7 @@ export default function ADialog(props) {
   const [open, setOpen] = React.useState(props.status);
   useEffect(() => {
     setOpen(props.status);
-  });
+  },[props.status]);
 
   // console.log("value in open",open)
 

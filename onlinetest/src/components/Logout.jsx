@@ -1,9 +1,16 @@
 import React from 'react';
 import "../sass/Result.sass";
 import { Button } from '@material-ui/core';
-
+/**
+ * 
+ * @param {Object} props 
+ */
 function Logout(props) {
   localStorage.clear();
+  /**
+   * 
+   * @param {Object} event - contains event fired on button click 
+   */
   const handleRegister = (event) => {
     event.preventDefault();
     props.history.push("/");
