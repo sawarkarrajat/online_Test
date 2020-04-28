@@ -1,6 +1,10 @@
+/**
+ * @file ConductTest.jsx is the root file for this example app
+ * @author Rajat Sawarkar
+ */
+
 import React, { Component } from "react";
 import "../sass/ConductTest.sass";
-// import { makeStyles} from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import data from "../data/questions.json";
 import uniqid from "uniqid";
