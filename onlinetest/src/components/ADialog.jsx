@@ -6,20 +6,32 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useEffect } from "react";
-
+/**
+ * 
+ * @param {Object} props - contains props to set dialogue open or close
+ * @returns {HTMLBodyElement} - returns dialogue component
+ */
 export default function ADialog(props) {
+  /**
+   * @type{hook}
+   */
   const [open, setOpen] = React.useState(props.status);
+  /**
+   * @method - runs on change of props and for initial loading
+   */
   useEffect(() => {
     setOpen(props.status);
   },[props.status]);
-
-  // console.log("value in open",open)
-
+  /**
+   * @property{Function} - function to handle dialog close
+   */
   const handleClose = () => {
     setOpen(false);
     props.handleClose();
   };
-
+  /**
+   * @property{Function} - function to handle agreement
+   */
   const handleAgree = () => {
     setOpen(false);
     props.handleAgree();
