@@ -1,6 +1,7 @@
 import React from 'react';
 import "../sass/Result.sass";
 import { Button } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 /**
  * 
  * @param {Object} props 
@@ -24,4 +25,4 @@ function Logout(props) {
   );
 }
 
-export default Logout;
+export default withRouter(Logout);

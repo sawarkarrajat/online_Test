@@ -10,6 +10,7 @@ import data from "../data/questions.json";
 import uniqid from "uniqid";
 import Timer from "./Timer";
 import ADialog from "./ADialog";
+import { withRouter } from "react-router-dom";
 /**
  * @type{Number}
  */
@@ -38,11 +39,16 @@ const Navigator = props => {
 };
 /**
  * a class to create a conduct test page and its instances
+ *
+ * @class ConductTest
+ * @extends {Component}
  */
 class ConductTest extends Component {
+  
   /**
-   * 
-   * @param {Object} props 
+   *Creates an instance of ConductTest.
+   * @param {*} props
+   * @memberof ConductTest
    */
   constructor(props) {
     super(props);
@@ -54,13 +60,12 @@ class ConductTest extends Component {
   }
   /**
    * @property{Function} - will go to logout if back is clicked
+   * @memberof ConductTest
    */
   componentDidMount() {
-    if (!localStorage.getItem("level")) {
-      this.props.history.push("/logout");
-    }
-    window.onpopstate = e => {
-      this.props.history.push("/logout");
+    window.onpopstate = (e) => {
+      e.preventDefault();
+      this.setState({ dialog: true });
     };
   }
   /**
@@ -244,4 +249,4 @@ class ConductTest extends Component {
   }
 }
 
-export default ConductTest;
+export default withRouter(ConductTest);

@@ -32,7 +32,7 @@ const useStyles = makeStyles({
  * @param {Object} props
  * @returns {HTMLFormElement} -retruns an html form element
  */
-const RegistrationForm = (props) => {
+export const RegistrationForm = (props) => {
 	/**
 	 * @type {Object}
 	 */
@@ -140,7 +140,7 @@ class SignUp extends Component {
 		 * @property {Function} - used to store data in localstorage
 		 */
 		await window.localStorage.setItem("userData", JSON.stringify(this.state));
-		this.props.history.push("/disclamer");
+		this.props.history.push("/disclaimer");
 	};
 	/**
 	 * @property {Function} - used to render component in browser
@@ -151,7 +151,7 @@ class SignUp extends Component {
      */
     const { user } = this.state;
     /**
-     * @type {Array}
+     * @type {JSON}
      */
 		const fields = [
 			{

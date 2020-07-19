@@ -1,6 +1,7 @@
 import React from 'react';
 import "../sass/Result.sass";
 import { Button } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 /**
  * 
  * @param {Object} props
@@ -32,4 +33,4 @@ function Result(props) {
   );
 }
 
-export default Result;
+export default withRouter(Result);
